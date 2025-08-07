@@ -15,7 +15,7 @@ const ExpenseTransactions = ({transactions,onSeeMore}) => {
             </button>
         </div>
 
-        <div className='mt-6'>
+        {/* <div className='mt-6'>
             {transactions?.slice(0,5)?.map((expense) => (
                 <TransactionInfoCard
                 key={expense._id}
@@ -28,7 +28,26 @@ const ExpenseTransactions = ({transactions,onSeeMore}) => {
                 />
             ))}
 
-        </div>
+        </div> */}
+
+        <div className='mt-6'>
+  {Array.isArray(transactions) ? (
+    transactions.slice(0, 5).map((expense) => (
+      <TransactionInfoCard
+        key={expense._id}
+        title={expense.category}
+        icon={expense.icon}
+        date={moment(expense.date).format("Do MMM YYYY")}
+        amount={expense.amount}
+        type="expense"
+        hideDeleteBtn
+      />
+    ))
+  ) : (
+    <p className="text-gray-500">No transactions available.</p>
+  )}
+</div>
+
 
     </div>
   )

@@ -16,7 +16,7 @@ const RecentIncome = ({data,onSeeMore}) => {
             </button>
         </div>
 
-        <div className='mt-6'>
+        {/* <div className='mt-6'>
             {data?.slice(0,5).map((item)=>(
                 <TransactionInfoCard
                 key={item._id}
@@ -29,7 +29,25 @@ const RecentIncome = ({data,onSeeMore}) => {
                 />
             ))}
 
-        </div>
+        </div> */}
+        <div className='mt-6'>
+  {Array.isArray(data) && data.length > 0 ? (
+    data.slice(0, 5).map((item) => (
+      <TransactionInfoCard
+        key={item._id}
+        title={item.source}
+        icon={item.icon}
+        date={moment(item.date).format("Do MMM YYYY")}
+        amount={item.amount}
+        type="income"
+        hideDeleteBtn
+      />
+    ))
+  ) : (
+    <p className="text-gray-500">No income transactions found.</p>
+  )}
+</div>
+
    </div>
   )
 }
