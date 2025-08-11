@@ -1,31 +1,42 @@
-import React,{useState} from "react";
+
+
+
+
+import { createContext } from "react";
+
+export const UserContext = createContext();
+
+
+
+
+// import React,{createContext,useState} from "react";
 
 // export const UserContext = createContext();
 
-const UserProvider = ({children}) => {
-    const [user,setUser] = useState(null);
+// const UserProvider = ({children}) => {
+//     const [user,setUser] = useState(null);
 
-    // Fuction to update user data 
-    const updateUser = (userData) =>{
-        setUser(userData);
-    };
+//     // Fuction to update user data 
+//     const updateUser = (userData) =>{
+//         setUser(userData);
+//     };
 
-    // Function to clear user data (e.g. on logout)
-    const clearUser = ()=>{
-        setUser(null);
-    };
+//     // Function to clear user data (e.g. on logout)
+//     const clearUser = ()=>{
+//         setUser(null);
+//     };
 
-    return (
-        <UserContext.Provider
-        value={{
-            user,
-            updateUser,
-            clearUser,
-        }} 
-        >
-            {children}
-            </UserContext.Provider>
-    );
-}
+//     return (
+//         <UserContext.Provider
+//         value={{
+//             user,
+//             updateUser,
+//             clearUser,
+//         }} 
+//         >
+//             {children}
+//             </UserContext.Provider>
+//     );
+// }
 
-export default UserProvider;
+// export default UserProvider;
