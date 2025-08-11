@@ -12,7 +12,7 @@ import { addThousandsSeparator } from '../../Utils/helper';
 import RecentTransaction from '../../components/Dashboard/RecentTransaction';
 import FinanceOverview from '../../components/Dashboard/FinanceOverview';
 import ExpenseTransactions from './ExpenseTransactions';
-import Last30DaysExpenses from './last30DaysExpenses';
+import Last30DaysExpenses from './Last30DaysExpenses';
 import RecentIncomeWithChart from './RecentIncomeWithChart';
 import RecentIncome from './RecentIncome';
 
