@@ -1,4 +1,5 @@
 export const BASE_URL = "https://expensetrakerbackend-db1a.onrender.com";
+// export const BASE_URL = "http://localhost:8000";
 
 // utils/apiPaths.js
 

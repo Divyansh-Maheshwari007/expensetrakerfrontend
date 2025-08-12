@@ -5,14 +5,22 @@ const Last30DaysExpenses = ({ data }) => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    const processedData = data.map((item) => ({
-      month: new Date(item.createdAt).toLocaleDateString('en-IN', {
-        day: 'numeric',
-        month: 'short',
-      }),
-      amount: item.amount,
-      category: item.category,
-    }));
+    // Safe check for null, undefined or non-array data
+    if (!Array.isArray(data) || data.length === 0) {
+      setChartData([]);
+      return;
+    }
+
+    const processedData = data
+      .filter((item) => item?.createdAt && item?.amount != null) // Ignore invalid data
+      .map((item) => ({
+        month: new Date(item.createdAt).toLocaleDateString('en-IN', {
+          day: 'numeric',
+          month: 'short',
+        }),
+        amount: Number(item.amount) || 0,
+        category: item.category || 'Other',
+      }));
 
     setChartData(processedData);
   }, [data]);
@@ -23,7 +31,13 @@ const Last30DaysExpenses = ({ data }) => {
         <h5 className="text-lg font-semibold">Last 30 Days Expenses</h5>
       </div>
 
-      <CustomBarChart data={chartData} />
+      {chartData.length > 0 ? (
+        <CustomBarChart data={chartData} />
+      ) : (
+        <p className="text-gray-500 text-sm mt-2">
+          No expenses recorded in the last 30 days.
+        </p>
+      )}
     </div>
   );
 };

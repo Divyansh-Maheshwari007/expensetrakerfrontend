@@ -44,11 +44,18 @@ const Home = () => {
       }
     };
 
-    useEffect(() => {
-      fetchDashboardData();
-      return () => {
-      }
-    }, [])
+    // useEffect(() => {
+    //   fetchDashboardData();
+    //   return () => {
+    //   }
+    // }, [])
+
+    
+useEffect(() => {
+  fetchDashboardData();
+}, []);
+
+
     console.log("Dashboard Data in Home.jsx:", dashboardData);
     
 
