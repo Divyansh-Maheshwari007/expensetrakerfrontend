@@ -44,19 +44,13 @@ const Home = () => {
       }
     };
 
-    // useEffect(() => {
-    //   fetchDashboardData();
-    //   return () => {
-    //   }
-    // }, [])
+ 
 
     
 useEffect(() => {
   fetchDashboardData();
 }, []);
 
-
-    console.log("Dashboard Data in Home.jsx:", dashboardData);
     
 
   useUserAuth();
@@ -114,14 +108,16 @@ useEffect(() => {
                 />
 
                 <RecentIncomeWithChart
-                data={dashboardData?.last600DaysIncome?.transaction?.slice(0,5) || []}
+                data={dashboardData?.last60DaysIncome?.transaction?.slice(0,5) || []}
                 totalIncome={dashboardData?.totalBalance || 0}
                 />
   
                 <RecentIncome
-                data = {dashboardData?.last30DaysExpenses?.transactions || {}}
+                data={dashboardData?.last60DaysIncome?.transaction?.slice(0,5) || []}
                  onSeeMore={()=> navigate("/Income")}
                 />
+
+                
 
         </div>
 

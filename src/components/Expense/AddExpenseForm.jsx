@@ -3,51 +3,61 @@ import Input from '../Inputs/Input';
 import EmojiPickerPopup from '../layouts/EmojiPickerPopup';
 
 const AddExpenseForm = ({ onAddExpense }) => {
-  const [income, setIncome] = useState({
+  // Get today's date in YYYY-MM-DD format
+  const today = new Date().toISOString().split("T")[0];
+
+  const [expense, setExpense] = useState({
     category: "",
     amount: "",
-    date: "",
+    date: today, // Default to today's date
     icon: "",
   });
 
-  const handleChange = (key, value) => setIncome({ ...income, [key]: value });
+  const handleChange = (key, value) => {
+    setExpense({ ...expense, [key]: value });
+  };
 
   return (
     <div>
+      {/* Emoji Picker */}
       <EmojiPickerPopup
-        icon={income.icon}
+        icon={expense.icon}
         onSelect={(selectedIcon) => handleChange("icon", selectedIcon)}
       />
 
+      {/* Category Input */}
       <Input
-        value={income.category}
+        value={expense.category}
         onChange={({ target }) => handleChange("category", target.value)}
         label="Category"
         placeholder="Rent, Groceries, etc"
         type="text"
       />
 
+      {/* Amount Input */}
       <Input
-        value={income.amount}  // ✅ FIXED
+        value={expense.amount}
         onChange={({ target }) => handleChange("amount", target.value)}
         label="Amount"
-        placeholder=""
+        placeholder="Enter amount"
         type="number"
       />
 
+      {/* Date Input */}
       <Input
-        value={income.date}  // ✅ FIXED
+        value={expense.date}
         onChange={({ target }) => handleChange("date", target.value)}
         label="Date"
-        placeholder=""
         type="date"
+        max={today} // Prevent future dates
       />
 
+      {/* Submit Button */}
       <div className='flex justify-end mt-6'>
         <button
           type='button'
           className='add-btn add-btn-fill'
-          onClick={() => onAddExpense(income)}
+          onClick={() => onAddExpense(expense)}
         >
           Add Expense
         </button>
